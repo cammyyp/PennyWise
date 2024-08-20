@@ -1,16 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
     setError("");
-  }, []);
+  }, [username, password]);
 
   const handleLogin = () => {
     if (!username) {
@@ -18,11 +19,12 @@ export default function LoginPage() {
     } else if (!password) {
       setError("Please enter a password");
     }
+    navigate("/home");
   };
 
   return (
     <>
-      <div className="flex justify-center items-center min-h-screen flex-col gap-4">
+      <div className="flex justify-center items-center min-h-screen flex-col gap-4 bg-indigo-500">
         {error && (
           <div role="alert" className="alert alert-error w-96">
             <svg
@@ -73,10 +75,15 @@ export default function LoginPage() {
               Forgot Password?
             </Link>
             <div className="card-actions justify-start">
-              <button className="btn bg-indigo-500 w-32" onClick={handleLogin}>
+              <button
+                className="btn bg-indigo-500 w-32 text-white"
+                onClick={handleLogin}
+              >
                 Login
               </button>
-              <button className="btn border-indigo-500 w-24">Sign up</button>
+              <Link to={"/register"} className="btn border-indigo-500 w-24">
+                Sign up
+              </Link>
             </div>
           </div>
         </div>
