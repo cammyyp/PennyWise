@@ -1,17 +1,15 @@
-package com.pennywise.PennyWise.entity;
+package com.pennywise.PennyWise.entity.savings;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ser.Serializers;
+import com.pennywise.PennyWise.entity.BaseEntity;
+import com.pennywise.PennyWise.entity.user.User;
 import com.pennywise.PennyWise.enums.RiskCategory;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "savings")
-public class SavingsAccount {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+public class SavingsAccount extends BaseEntity {
 
     @Column(name = "account_name")
     private String accountName;
@@ -40,14 +38,6 @@ public class SavingsAccount {
         this.riskCategory = riskCategory;
         this.description = description;
         this.userId = userId;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getAccountName() {
