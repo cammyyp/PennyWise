@@ -15,23 +15,12 @@
 
 - **Backend**: [Spring Boot](https://spring.io/projects/spring-boot)
   - RESTful API development using Spring Boot.
-  - Secure authentication with JWT tokens.
-  - Data persistence with a relational database (MySQL or PostgreSQL).
+  - Database (MySQL).
 
 - **Frontend**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
   - Fast and modern frontend development with React and Vite.
-  - Component-based architecture for a scalable and maintainable codebase.
 
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) + [DaisyUI](https://daisyui.com/)
   - Tailwind CSS for utility-first, responsive design.
   - DaisyUI for beautiful, pre-styled components, ensuring a consistent and polished UI.
 
-## Installation and Setup
-
-### Backend Setup (Spring Boot)
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/pennywise-backend.git
-   cd pennywise-backend
