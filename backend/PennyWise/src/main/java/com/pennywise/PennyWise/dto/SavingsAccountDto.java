@@ -1,42 +1,48 @@
-package com.pennywise.PennyWise.entity.savings;
+package com.pennywise.PennyWise.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.ser.Serializers;
-import com.pennywise.PennyWise.entity.BaseEntity;
-import com.pennywise.PennyWise.entity.user.User;
+import com.pennywise.PennyWise.entity.savings.SavingsAccount;
 import com.pennywise.PennyWise.enums.RiskCategory;
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "savings")
-public class SavingsAccount extends BaseEntity {
+public class SavingsAccountDto {
 
-    @Column(name = "account_name")
+    private int id;
     private String accountName;
 
-    @Column(name = "value")
     private int value;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "risk_category")
     private RiskCategory riskCategory;
 
-    @Column(name = "description")
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    private int userId;
 
-    public SavingsAccount() {
+    public SavingsAccountDto() {
     }
 
-    public SavingsAccount(String accountName, int value, RiskCategory riskCategory, String description, User user) {
+    public SavingsAccountDto(SavingsAccount savingsAccount) {
+        this.id = savingsAccount.getId();
+        this.accountName = savingsAccount.getAccountName();
+        this.value = savingsAccount.getValue();
+        this.riskCategory = savingsAccount.getRiskCategory();
+        this.description = savingsAccount.getDescription();
+        this.userId = savingsAccount.getUser().getId();
+    }
+
+    public SavingsAccountDto(int id, String accountName, int value, RiskCategory riskCategory, String description, int userId) {
+        this.id = id;
         this.accountName = accountName;
         this.value = value;
         this.riskCategory = riskCategory;
         this.description = description;
-        this.user = user;
+        this.userId = userId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getAccountName() {
@@ -71,11 +77,11 @@ public class SavingsAccount extends BaseEntity {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

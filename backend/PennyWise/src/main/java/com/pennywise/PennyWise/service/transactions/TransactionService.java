@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface TransactionService {
 
-    public List<Transaction> findAll();
+    public List<Transaction> findAllIncomesForUser(int id);
+    public List<Transaction> findAllExpensesForUser();
     public Optional<Transaction> findTransaction(int id);
 }

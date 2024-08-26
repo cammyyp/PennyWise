@@ -1,5 +1,7 @@
 package com.pennywise.PennyWise.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pennywise.PennyWise.entity.BaseEntity;
 import com.pennywise.PennyWise.entity.savings.SavingsAccount;
 import com.pennywise.PennyWise.entity.transaction.Transaction;
@@ -21,10 +23,12 @@ public class User extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<SavingsAccount> savingsAccounts;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Transaction> transactions;
 
     public User(String userName, String password, String name) {

@@ -1,42 +1,35 @@
-package com.pennywise.PennyWise.entity.transaction;
+package com.pennywise.PennyWise.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pennywise.PennyWise.entity.BaseEntity;
-import com.pennywise.PennyWise.entity.user.User;
+import com.pennywise.PennyWise.entity.transaction.Transaction;
 import com.pennywise.PennyWise.enums.TransactionType;
-import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "transactions")
-public class Transaction extends BaseEntity {
+public class TransactionDto {
 
-    @Column(name = "amount")
     private float amount;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type")
     private TransactionType transactionType;
 
-    @Column(name = "category")
     private String category;
 
-    @Column(name = "date_due")
     private Date dueDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+    public TransactionDto() {
+    }
 
-    public Transaction() {}
+    public TransactionDto(Transaction transaction) {
+        this.amount = transaction.getAmount();
+        this.transactionType = transaction.getTransactionType();
+        this.category = transaction.getCategory();
+        this.dueDate = transaction.getDueDate();
+    }
 
-    public Transaction(float amount, TransactionType transactionType, String category, Date dueDate, User userId) {
+    public TransactionDto(float amount, TransactionType transactionType, String category, Date dueDate) {
         this.amount = amount;
         this.transactionType = transactionType;
         this.category = category;
         this.dueDate = dueDate;
-        this.user = user;
     }
 
     public float getAmount() {
@@ -69,13 +62,5 @@ public class Transaction extends BaseEntity {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
-    }
-
-    public User getUserId() {
-        return user;
-    }
-
-    public void setUserId(User userId) {
-        this.user = userId;
     }
 }
