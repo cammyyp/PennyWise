@@ -4,10 +4,7 @@ import com.pennywise.PennyWise.entity.user.User;
 import com.pennywise.PennyWise.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -27,5 +24,13 @@ public class UserController {
         User user = userService.findUser(id);
 
         return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/add")
+    @ResponseBody
+    public ResponseEntity<String> createUser(@RequestBody User user) {
+        userService.createUser(user);
+
+        return ResponseEntity.ok("User created successfully");
     }
 }

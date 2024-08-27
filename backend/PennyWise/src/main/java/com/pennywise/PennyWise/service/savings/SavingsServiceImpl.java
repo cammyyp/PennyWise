@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class SavingsServiceImpl implements SavingsService{
 
     private UserService userService;
@@ -26,7 +27,6 @@ public class SavingsServiceImpl implements SavingsService{
     }
 
     @Override
-    @Transactional
     public List<SavingsAccountDto> findAllSavingsAccountsForUser(int userId) {
         try {
             User user = userService.findUser(userId);
@@ -44,7 +44,6 @@ public class SavingsServiceImpl implements SavingsService{
     }
 
     @Override
-    @Transactional
     public void createSavingsAccount(SavingsAccountDto savingsAccountDto) {
         try {
             User user = userService.findUser(savingsAccountDto.getUserId());
@@ -58,7 +57,6 @@ public class SavingsServiceImpl implements SavingsService{
     }
 
     @Override
-    @Transactional
     public void updateSavingsAccount(SavingsAccountDto savingsAccount) {
         try {
             SavingsAccount existingSavingsAccount = savingsRepository.findById(savingsAccount.getId())

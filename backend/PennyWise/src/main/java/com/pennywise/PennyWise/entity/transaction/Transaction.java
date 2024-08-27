@@ -31,7 +31,7 @@ public class Transaction extends BaseEntity {
 
     public Transaction() {}
 
-    public Transaction(float amount, TransactionType transactionType, String category, Date dueDate, User userId) {
+    public Transaction(float amount, TransactionType transactionType, String category, Date dueDate, User user) {
         this.amount = amount;
         this.transactionType = transactionType;
         this.category = category;
@@ -71,11 +71,11 @@ public class Transaction extends BaseEntity {
         this.dueDate = dueDate;
     }
 
-    public User getUserId() {
+    public User getUser() {
         return user;
     }
 
-    public void setUserId(User userId) {
-        this.user = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
