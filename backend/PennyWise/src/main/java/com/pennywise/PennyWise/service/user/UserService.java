@@ -8,5 +8,6 @@ import java.util.Optional;
 public interface UserService {
 
     public void createUser(User user);
+    public void updateUser(User user);
     public User findUser(int id);
 }

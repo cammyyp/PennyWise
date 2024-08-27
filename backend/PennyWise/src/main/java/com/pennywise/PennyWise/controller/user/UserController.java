@@ -33,4 +33,12 @@ public class UserController {
 
         return ResponseEntity.ok("User created successfully");
     }
+
+    @PutMapping("/update")
+    @ResponseBody
+    public ResponseEntity<String> updateUser(@RequestBody User user) {
+        userService.createUser(user);
+
+        return ResponseEntity.ok("User updated successfully");
+    }
 }
